@@ -22,9 +22,18 @@ sumarFlecha = (num1, num2) => {
   console.log(num1 + num2);
 }
 
+resta = (num1, num2) => num1 - num2
+
+multiplica = (num1, num2) => num1 * num2
+
+divide = (num1, num2) => num1 / num2
+
 // module.exports = sumar
 
 module.exports = {
   sumar,
-  sumarFlecha
+  sumarFlecha,
+  resta,
+  multiplica,
+  divide
 }
