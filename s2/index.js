@@ -9,6 +9,13 @@
 // })
 
 const https = require('https')
+const fs = require('fs')
+const path = require('path')
+
+descargarImagen = (url, imageName) => {
+  let file = fs.createWriteStream(path.join(__dirname, '', imageName + ".png"))
+  https.get(url, res => res.pipe(file))
+}
 
 getData = () => {
   https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (res) => {
@@ -25,6 +32,9 @@ getData = () => {
         console.log('Fecha: ', body.date);
         console.log('\nDescripción: ', body.explanation);
         console.log('\nUrl: ', body.url);
+        console.log('\nTitle: ', body.title);
+
+        descargarImagen(body.url, body.title)
       } catch (error) {
         console.log("Error: Json ", error.message);
       }
