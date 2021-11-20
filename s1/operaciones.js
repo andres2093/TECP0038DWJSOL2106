@@ -1,5 +1,7 @@
 // console.log(sumar(4,5));
 
+const { randomBytes } = require("crypto");
+
 
 // function sumar(num1, num2) {
 //   // console.log('Sumar');
@@ -28,6 +30,8 @@ multiplica = (num1, num2) => num1 * num2
 
 divide = (num1, num2) => num1 / num2
 
+random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
 // module.exports = sumar
 
 module.exports = {
@@ -35,5 +39,6 @@ module.exports = {
   sumarFlecha,
   resta,
   multiplica,
-  divide
+  divide,
+  random
 }
