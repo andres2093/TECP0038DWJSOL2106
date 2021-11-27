@@ -45,6 +45,8 @@ const question1 = () => (
   new Promise((resolve, reject) => {
     readline.question('¿Qué quieres hacer?', name => {
       console.log('Hola', name);
+      process.stdout.write('\033c');
+      main()
       resolve()
     })
   })
