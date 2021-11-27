@@ -1,3 +1,5 @@
+// Callbacks
+
 // Función 1
 saludar = nombre => console.log('Hola', nombre)
 // Función 2
@@ -68,4 +70,48 @@ ejecutarWs = callback => {
   }).on('error', err => console.log('Error', err))
 }
 
-ejecutarWs(ordernar)
+// ejecutarWs(ordernar)
+
+// Promesas
+// let promesa = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     let numero = Math.random()
+//     console.log(numero);
+//     if(numero >= 0.5) resolve("Ok")
+//     reject("Error")
+//   }, 2000);
+// })
+
+// promesa
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err))
+
+const fs = require('fs');
+
+readFile = path => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, "utf-8", (err, data) => {
+      if(err) return reject(err)
+      return resolve(data)
+    })
+  })
+}
+
+// readFile('./archivo.txt')
+//   .then(data => console.log('Data:', data))
+//   .catch(err => console.log('Error:', err))
+
+// All
+// let prom1 = new Promise((res, rej) => {
+//   setTimeout(res, 1000, "1")
+// })
+// let prom2 = new Promise((res, rej) => {
+//   setTimeout(res, 2000, "2")
+// })
+// let prom3 = new Promise((res, rej) => {
+//   setTimeout(res, 7000, "3")
+// })
+
+// Promise.all([prom1, prom2, prom3])
+//   .then(data => console.log('Data:', data))
+//   .catch(err => console.log('Error:', err))
