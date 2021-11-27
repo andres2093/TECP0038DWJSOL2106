@@ -38,11 +38,16 @@ const question1 = () => {
   })
 }
 
-const question2 = () => {
+const question2 = (isFirst) => {
   return new Promise((resolve, reject) => {
     interface.question('Primer número: ', answer => {
       if(!isNaN(answer)){
         num1 = parseInt(answer);
+        // isFirst ? 'si' : 'no'
+        // if (isFirst) 
+        //   num1 = parseInt(answer);
+        // else 
+        //   num2 = parseInt(answer);
         resolve()
       } else {
         process.stdout.write('\033c');
@@ -70,7 +75,7 @@ const question3 = () => {
 
 const again = () => {
   return new Promise((resolve, reject) => {
-    interface.question('Quires realizar otra operación? \n1) Si, 2) No ', answer => {
+    interface.question('Quieres realizar otra operación? \n1) Si, 2) No ', answer => {
       if(answer === "1"){
         process.stdout.write('\033c')
         main()
