@@ -1,64 +1,123 @@
-// Para el reto
-// const operador = process.argv[2]
-// const num1 = Number(process.argv[3])
-// const num2 = Number(process.argv[4])
+const readline = require('readline');
+const fs = require('fs')
 
-// switch (operador) {
-//   case '+':
-//     console.log(num1, operador, num2, "=", num1 + num2);
-//     break;
-//   case '-':
-//     console.log(num1, operador, num2, "=", num1 - num2);
-//     break;
-//   case 'x':
-//     console.log(num1, operador, num2, "=", num1 * num2);
-//     break;
-//   case '/':
-//     console.log(num1, operador, num2, "=", num1 / num2);
-//     break;
-//   default:
-//     console.log("Error");
-//     break;
-// }
+let opcion, num1, num2, text = '';
 
-////////////////////////////
-
-const readline = require('readline').createInterface({
+let interface = readline.createInterface({
   input: process.stdin,
   output: process.stdout
-})
+});
 
-// readline.question('¿Quién eres?', name => {
-//   console.log('Hola', name);
-// })
+const menu = () => {
+  console.log('Operaciones disponibles');
+  console.log('1) Para sumar');
+  console.log('2) Para restar');
+  console.log('3) Para multiplicar');
+  console.log('4) Para dividir');
+  console.log('5) Salir');
+}
 
-const question = () => (
-  new Promise((resolve, reject) => {
-    readline.question('¿Quién eres?', name => {
-      console.log('Hola', name);
+const question1 = () => {
+  return new Promise((resolve, reject) => {
+    interface.question('Que operación quieres realizar? ', answer => {
+      if(isNaN(answer)){
+        process.stdout.write('\033c');
+        console.log('Agrega una opción valida!');
+        main();
+      } else if(parseInt(answer) < 5){
+        opcion = answer
+        resolve();
+      } else if(answer === "5"){
+        interface.close();
+      } else {
+        process.stdout.write('\033c');
+        console.log('Agrega una opción valida!');
+        main();
+      }
+    })
+  })
+}
+
+const question2 = () => {
+  return new Promise((resolve, reject) => {
+    interface.question('Primer número: ', answer => {
+      if(!isNaN(answer)){
+        num1 = parseInt(answer);
+        resolve()
+      } else {
+        process.stdout.write('\033c');
+        console.log('Agrega un número!');
+        main();
+      }
+    })
+  })
+}
+
+const question3 = () => {
+  return new Promise((resolve, reject) => {
+    interface.question('Segundo número: ', answer => {
+      if(!isNaN(answer)){
+        num2 = parseInt(answer);
+        resolve()
+      } else {
+        process.stdout.write('\033c');
+        console.log('Agrega un número!');
+        main();
+      }
+    })
+  })
+}
+
+const again = () => {
+  return new Promise((resolve, reject) => {
+    interface.question('Quires realizar otra operación? \n1) Si, 2) No ', answer => {
+      if(answer === "1"){
+        process.stdout.write('\033c')
+        main()
+      } else {
+        // fs.appendFile(`${new Date().getTime()}.txt`, text, function (err) {
+        //   console.log(err ? 'Error: ' + err : 'Archivo creado correctamente');
+        // })
+        fs.writeFileSync(`${new Date().getTime()}.txt`, text, { encoding: 'utf-8' });
+        console.log('Archivo creado correctamente!');
+        interface.close();
+      }
       resolve()
     })
   })
-)
+}
 
-const question1 = () => (
-  new Promise((resolve, reject) => {
-    readline.question('¿Qué quieres hacer?', name => {
-      console.log('Hola', name);
-      process.stdout.write('\033c');
-      main()
-      resolve()
-    })
-  })
-)
+const calc = () => {
+  let res;
+  switch (opcion) {
+    case "1":
+      res = num1 +  '+' +  num2 +  " = " + (num1 + num2);
+      break;
+    case "2":
+      res = num1 +  '-' +  num2 +  " = " + (num1 - num2);
+      break;
+    case "3":
+      res = num1 +  '*' +  num2 +  " = " + (num1 * num2);
+      break;
+    case "4":
+      res = num1 +  '/' +  num2 +  " = " + (num1 / num2);
+      break;
+    default:
+      res = "Error";
+      break;
+  }
+  console.log(res);
+  res += '\n';
+  text += res;
+}
 
 const main = async () => {
-  await question()
+  menu()
   await question1()
+  await question2()
+  await question3()
+  calc()
+  await again()
 }
 
 main()
-
-// readline.question('¿Qué quieres hacer?', name => {
-//   console.log('Hola', name);
-// })
