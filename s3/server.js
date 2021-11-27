@@ -115,3 +115,18 @@ readFile = path => {
 // Promise.all([prom1, prom2, prom3])
 //   .then(data => console.log('Data:', data))
 //   .catch(err => console.log('Error:', err))
+
+// Reto 2
+let files = Promise.all([
+  readFile("./archivo1.txt"), 
+  readFile("./archivo2.txt"), 
+  readFile("./archivo3.txt")
+])
+
+files
+  .then(collection => {
+    console.log("Promesas completadas!!!");
+
+    collection.forEach((dato, i) => console.log("Archivo:", (i + 1), ":", dato))
+  })
+  .catch(err => console.log("Error:", err))
