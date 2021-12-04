@@ -5,7 +5,7 @@ const Product = require('./models/Product');
 const Review = require('./models/Review');
 
 // Database connection
-const sequelize = new Sequelize('andres', 'admin', 'gYGRQ0Kr', {
+const sequelize = new Sequelize('andreszzz', 'admin', 'gYGRQ0Kr', {
   host: 'mysql-60632-0.cloudclusters.net',
   dialect: 'mysql',
   port: 11198,
