@@ -15,3 +15,14 @@ app.use('/api', require('./routes'))
 app.listen(APP_PORT, () => {
   console.log('Server on port: ', APP_PORT);
 })
+
+// Name -> yadim76936
+// Lastname -> suggerin
+// Email -> yadim76936@suggerin.com
+// Pass -> vektof-xodbe1-Jajdyc
+
+// DB
+// host -> mysql-60632-0.cloudclusters.net
+// port -> 11198
+// user -> admin
+// pass -> gYGRQ0Kr
