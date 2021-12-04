@@ -17,7 +17,7 @@ app.listen(APP_PORT, () => {
 })
 
 // Name -> yadim76936
-// Lastname -> suggerin
+// Lastname -> suggerinc
 // Email -> yadim76936@suggerin.com
 // Pass -> vektof-xodbe1-Jajdyc
 
