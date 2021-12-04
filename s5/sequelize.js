@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 const NoteModel = require('./models/notes')
+const UserModel = require('./models/users')
+const CommentModel = require('./models/comments')
 
 const sequelize = new Sequelize(
   'andres', // DB Name
@@ -13,10 +15,14 @@ const sequelize = new Sequelize(
 )
 
 const Note = NoteModel(sequelize, Sequelize)
+const User = UserModel(sequelize, Sequelize)
+const Comment = CommentModel(sequelize, Sequelize)
 
 sequelize.sync({ force: false })
   .then(() => console.log("Tablas creadas!!!"))
 
 module.exports = {
-  Note
+  Note,
+  User,
+  Comment,
 }
