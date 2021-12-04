@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "admin",
+    "password": "gYGRQ0Kr",
+    "database": "andres",
+    "host": "mysql-60632-0.cloudclusters.net",
+    "dialect": "mysql",
+    "port": 11198
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
