@@ -37,12 +37,12 @@
 
 // npm i dotenv
 
+require('dotenv').config() // Configuring dotenv
+
 const express = require('express');
 const app = express();
 const helmet = require('helmet')
 const cors = require('cors')
-
-require('dotenv').config() // Configuring dotenv
 
 app.use(helmet())
 app.use(cors())
