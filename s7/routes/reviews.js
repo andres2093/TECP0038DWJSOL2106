@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const sequelize = require('../db');
+const permission = require('../middlewares/permission')
 
 // Get all reviews
-router.get('/', async (req, res) => {
+router.get('/', permission('admin', 'client'), async (req, res) => {
   const reviews = await sequelize.models.reviews.findAndCountAll();
   return res.status(200).json({ data: reviews });
 });
 
 // Creating a new review
-router.post('/', async (req, res) => {
+router.post('/', permission('admin', 'client'), async (req, res) => {
   const { body } = req;
   const review = await sequelize.models.reviews.create({
     content: body.content,
@@ -20,7 +21,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update a review by id
-router.put('/:id', async (req, res) => {
+router.put('/:id', permission('admin'), async (req, res) => {
   const { body, params: { id } } = req;
   const review = await sequelize.models.reviews.findByPk(id);
   if (!review) {
@@ -33,7 +34,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete a review by id
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', permission('admin'), async (req, res) => {
   const { params: { id } } = req;
   const review = await sequelize.models.reviews.findByPk(id);
   if (!review) {
